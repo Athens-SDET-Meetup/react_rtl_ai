@@ -6,13 +6,13 @@ import time
 driver = webdriver.Chrome()
 
 # Navigate to the LinkedIn login page
-driver.get('https://www.linkedin.com/login')
+driver.get('https://signin-staging.globalwebindex.com')
 
 # Wait for the page to load
 time.sleep(2)
 
 try:
-    target = driver.find_element(By.NAME,'email-adress1')
+    target = driver.find_element(By.NAME, 'email1')
 except:
 
     # Print the scraped data
@@ -72,6 +72,5 @@ except:
     scores, element_name, test_df = predict_elements()
     print(scores)
     print(element_name)
-
 
 time.sleep(2)

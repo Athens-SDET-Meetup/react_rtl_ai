@@ -6,36 +6,32 @@ import time
 driver = webdriver.Chrome()
 
 # Navigate to the LinkedIn login page
-driver.get('https://www.linkedin.com/login')
+driver.get('https://signin-staging.globalwebindex.com')
 
 # Wait for the page to load
 time.sleep(2)
 
-target = driver.find_element(By.ID,'username')
+target = driver.find_element(By.ID,'email-validation')
 
 # Scrape data
 elements_attributes = driver.find_elements(By.TAG_NAME,'input')
 
 attributes = []
 for element in elements_attributes:
-    if element.get_attribute('aria-describedby') not in [None, '']:
-        element_label = element.get_attribute('aria-describedby')
+    if element.get_attribute(By.ID) not in [None, '']:
         element_type = element.get_attribute('type')
         element_id = element.get_attribute(By.ID)
         element_name = element.get_attribute(By.NAME)
-        element_class = element.get_attribute(By.CLASS_NAME)
-        attributes.append({element_label, element_type, element_id, element_name, element_class})
+        attributes.append({element_type + "_element", element_id, element_name})
 
 # adding header 
-headerList = ['element', 'type', 'id', 'name', 'class']     
+headerList = ['element', 'id', 'name']     
 
 target_attributes = []
-target_element_label = target.get_attribute('aria-describedby')
 target_element_type = target.get_attribute('type')
 target_element_id = target.get_attribute(By.ID)
 target_element_name = target.get_attribute(By.NAME)
-target_element_class = target.get_attribute(By.CLASS_NAME)
-target_attributes.append({target_element_label, target_element_type, target_element_id, target_element_name, target_element_class})
+target_attributes.append({target_element_type + "_element", target_element_id, target_element_name})
 
 # Print the scraped data
 import pandas as pd
