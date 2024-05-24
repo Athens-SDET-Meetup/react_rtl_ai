@@ -27,6 +27,7 @@ except:
     df = df.fillna('None')
 
     # now since our machine learning model can only understand numeric values we'll have to convert the strings to numbers/indicator variables
+    # this includes your all independent variables,these will be used to train the model
     X_train = pd.get_dummies(df.drop('element',axis=1))
 
     # creating a dictionary of elements 
@@ -36,6 +37,7 @@ except:
     df['element'].unique()
 
     # replacing dictionary values into dataframe as we meed to convert this into numbers
+    # this is your dependent variable which needs to be predicted by this model
     y_train = df['element'].replace(element_dict)
 
     # Now we need to train our model , we can prefer any model which provides accurate results -
@@ -44,6 +46,7 @@ except:
     rf.fit(X_train, y_train)
 
     def predict_elements():
+        #returns number of records in test object
         num_of_records = len(test)
         test_ = test.fillna('None')
         concatenated = pd.concat([df, test_], axis=0).drop('element',     axis=1)
