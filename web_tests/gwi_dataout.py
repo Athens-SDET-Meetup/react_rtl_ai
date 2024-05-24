@@ -48,6 +48,10 @@ target_attributes.append({target_element_type + "_element", target_element_id, t
 # Print the scraped data
 import pandas as pd
 
+#Two-dimensional, size-mutable, potentially heterogeneous tabular data.
+#Data structure also contains labeled axes (rows and columns). 
+#Arithmetic operations align on both row and column labels.
+#Can be thought of as a dict-like container for Series objects. The primary pandas data structure.
 df_dic = pd.DataFrame(attributes)
 df_target = pd.DataFrame(target_attributes)
 print(df_dic)
