@@ -16,13 +16,13 @@ def highlight(element, effect_time, color, border):
 # Set up the Chrome web driver
 driver = webdriver.Chrome()
 
-# Navigate to the LinkedIn login page
-driver.get('https://signin-staging.globalwebindex.com')
+# Navigate to the registration page
+driver.get('https://technojam.ca/register-now/')
 
 # Wait for the page to load
 time.sleep(2)
 
-target = driver.find_element(By.ID,'email')
+target = driver.find_element(By.NAME,'text-1')
 
 # Scrape data
 elements_attributes = driver.find_elements(By.TAG_NAME,'input')
@@ -31,19 +31,19 @@ attributes = []
 for element in elements_attributes:
     highlight(element, 3, "blue", 5)
     if element.get_attribute(By.ID) not in [None, '']:
-        element_type = element.get_attribute('data-testid')
+        element_name = element.get_attribute('name')
         element_id = element.get_attribute(By.ID)
-        element_name = element.get_attribute('placeholder')
-        attributes.append({element_type, element_id, element_name})
+        element_type = element.get_attribute('aria-describedby')
+        attributes.append({element_name, element_id, element_type})
         print (attributes)
 # adding header 
 headerList = ['element', 'id', 'name']     
 
 target_attributes = []
-target_element_type = target.get_attribute('data-testid')
+target_element_name = target.get_attribute('name')
 target_element_id = target.get_attribute(By.ID)
-target_element_name = target.get_attribute('placeholder')
-target_attributes.append({target_element_type, target_element_id, target_element_name})
+target_element_type = target.get_attribute('aria-describedby')
+target_attributes.append({target_element_name, target_element_id, target_element_type})
 
 # Print the scraped data
 import pandas as pd

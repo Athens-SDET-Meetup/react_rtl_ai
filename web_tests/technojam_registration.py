@@ -5,14 +5,14 @@ import time
 # Set up the Chrome web driver
 driver = webdriver.Chrome()
 
-# Navigate to the LinkedIn login page
-driver.get('https://signin-staging.globalwebindex.com')
+# Navigate to the registration page
+driver.get('https://technojam.ca/register-now/')
 
 # Wait for the page to load
 time.sleep(2)
 
 try:
-    target = driver.find_element(By.NAME, 'email1')
+    target = driver.find_element(By.NAME, 'name1')
 except:
 
     # Print the scraped data
